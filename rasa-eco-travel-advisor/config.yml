@@ -1,5 +1,5 @@
 recipe: default.v1
-assistant_id: forgiving-chick
+assistant_id: objective-rundown
 language: en
 pipeline:
 - name: CompactLLMCommandGenerator

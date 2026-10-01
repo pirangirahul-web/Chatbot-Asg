@@ -69,8 +69,6 @@ rules:
   steps:
     - action: trip_intake_form
     - active_loop: null
-    - slot_was_set:
-        - requested_slot: null
     - action: action_fetch_hotels_flights
     - action: action_rank_options
     - action: action_calculate_carbon
