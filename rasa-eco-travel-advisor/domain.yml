@@ -1,0 +1,183 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - plan_trip
+  - inform_destination
+  - inform_dates
+  - inform_budget
+  - inform_sustainability
+  - inform_transport_mode
+  - ask_carbon_footprint
+  - ask_eco_hotels
+  - ask_green_transport
+  - request_human_advisor
+  - out_of_scope
+  - nlu_fallback
+
+entities:
+  - destination
+  - travel_dates
+  - budget
+  - sustainability_level
+  - transport_mode
+
+slots:
+  destination:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: destination
+
+  travel_dates:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: travel_dates
+
+  budget:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: budget
+
+  sustainability_level:
+    type: categorical
+    values:
+      - low
+      - medium
+      - high
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: sustainability_level
+
+  transport_mode:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: transport_mode
+
+  carbon_estimate:
+    type: float
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+  recommendations:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+  handover_requested:
+    type: bool
+    initial_value: false
+    influence_conversation: true
+    mappings:
+      - type: custom
+
+forms:
+  trip_intake_form:
+    required_slots:
+      - destination
+      - travel_dates
+      - budget
+      - sustainability_level
+
+responses:
+  utter_greet:
+    - text: "Hi! I'm your Eco-Travel Advisor 🌱 Let's plan a sustainable trip. Where would you like to go?"
+
+  utter_goodbye:
+    - text: "Safe travels! Remember — every eco-choice counts 🌍"
+
+  utter_ask_destination:
+    - text: "Which destination are you considering?"
+      buttons:
+        - title: "🌍 Paris"
+          payload: '/inform_destination{{"destination":"Paris"}}'
+        - title: "🌴 Bali"
+          payload: '/inform_destination{{"destination":"Bali"}}'
+        - title: "🏙️ Berlin"
+          payload: '/inform_destination{{"destination":"Berlin"}}'
+        - title: "🗼 Tokyo"
+          payload: '/inform_destination{{"destination":"Tokyo"}}'
+        - title: "🦁 Nairobi"
+          payload: '/inform_destination{{"destination":"Nairobi"}}'
+
+  utter_ask_travel_dates:
+    - text: "When are you planning to travel? (e.g., 12–18 June 2025)"
+
+  utter_ask_budget:
+    - text: "What's your approximate budget in USD?"
+
+  utter_ask_sustainability_level:
+    - text: "How important is sustainability for this trip?"
+      buttons:
+        - title: "🟤 Low — price first"
+          payload: '/inform_sustainability{{"sustainability_level":"low"}}'
+        - title: "🟡 Medium — balanced"
+          payload: '/inform_sustainability{{"sustainability_level":"medium"}}'
+        - title: "🟢 High — eco-first"
+          payload: '/inform_sustainability{{"sustainability_level":"high"}}'
+
+  utter_ask_transport_mode:
+    - text: "How will you travel?"
+      buttons:
+        - title: "✈️ Flight"
+          payload: '/inform_transport_mode{{"transport_mode":"flight"}}'
+        - title: "🚆 Train"
+          payload: '/inform_transport_mode{{"transport_mode":"train"}}'
+        - title: "🚗 Car"
+          payload: '/inform_transport_mode{{"transport_mode":"car"}}'
+        - title: "🚌 Bus"
+          payload: '/inform_transport_mode{{"transport_mode":"bus"}}'
+
+  utter_carbon_result:
+    - text: "Your estimated carbon footprint: {carbon_estimate} kg CO₂e."
+
+  utter_high_emission_warning:
+    - text: "⚠️ HIGH emission alert: that option produces a lot of CO₂. Consider a train or bus alternative."
+
+  utter_handover:
+    - text: "🙋 Connecting you to a human travel advisor with your full context. One moment please..."
+
+  utter_fallback_1:
+    - text: "I'm not sure I understood. Did you want to:"
+      buttons:
+        - title: "🌍 Plan a new trip"
+          payload: "/plan_trip"
+        - title: "♻️ Ask about carbon"
+          payload: "/ask_carbon_footprint"
+        - title: "🙋 Talk to a human"
+          payload: "/request_human_advisor"
+
+  utter_fallback_2:
+    - text: "Still not sure. I'll connect you to a human advisor."
+
+  utter_out_of_scope:
+    - text: "I can only help with eco-travel planning. Try asking about destinations, hotels, or carbon footprints."
+
+  utter_handover_confirmation:
+    - text: "✅ Your context has been packaged and sent to a human advisor."
+
+actions:
+  - action_calculate_carbon
+  - action_fetch_hotels_flights
+  - action_rank_options
+  - action_handover_to_human
+  - action_two_stage_clarification
+  - action_reset_slots
+  - validate_trip_intake_form
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: false

@@ -1,0 +1,267 @@
+version: "3.1"
+
+nlu:
+- lookup: destination
+  examples: |
+    - Paris
+    - paris
+    - Bali
+    - bali
+    - Berlin
+    - berlin
+    - Tokyo
+    - tokyo
+    - Rome
+    - rome
+    - Lisbon
+    - lisbon
+    - Barcelona
+    - barcelona
+    - Copenhagen
+    - copenhagen
+    - Amsterdam
+    - amsterdam
+    - Kyoto
+    - kyoto
+    - Nairobi
+    - nairobi
+    - London
+    - london
+    - Cape Town
+    - cape town
+    - Mombasa
+    - mombasa
+    - Zanzibar
+    - zanzibar
+    - Dubai
+    - dubai
+    - New York
+    - new york
+
+- intent: greet
+  examples: |
+    - hi
+    - hello
+    - hey
+    - good morning
+    - good evening
+    - hi there
+    - hey bot
+    - yo
+
+- intent: plan_trip
+  examples: |
+    - I want to plan a sustainable trip
+    - I want to plan a trip
+    - help me plan a sustainable trip
+    - I'd like to plan an eco-friendly trip
+    - I want to plan an eco trip
+    - help me plan my trip
+    - let's plan a sustainable trip
+    - can you help me plan a trip
+    - I need help planning a sustainable trip
+    - plan a new trip
+    - plan a trip to nairobi
+    - plan a trip to paris
+    - plan a trip to bali
+    - plan my trip
+
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - see you
+    - talk later
+    - thanks bye
+
+- intent: affirm
+  examples: |
+    - yes
+    - yeah
+    - yep
+    - sure
+    - absolutely
+    - correct
+    - ok
+    - okay
+
+- intent: deny
+  examples: |
+    - no
+    - nope
+    - nah
+    - not really
+    - don't
+
+- intent: inform_destination
+  examples: |
+    - I want to go to [Paris](destination)
+    - My destination is [Bali](destination)
+    - I'm travelling to [Berlin](destination)
+    - Going to [Tokyo](destination)
+    - I'd like to visit [Rome](destination)
+    - Planning a trip to [Lisbon](destination)
+    - Destination: [Barcelona](destination)
+    - I want to go to [Copenhagen](destination)
+    - [Amsterdam](destination) please
+    - Take me to [Kyoto](destination)
+    - I would like to visit [Nairobi](destination)
+    - I want to visit [Paris](destination)
+    - I would like to travel to [Bali](destination)
+    - I am going to [London](destination)
+    - I am planning to visit [Cape Town](destination)
+    - I want to travel to [Mombasa](destination)
+    - I would like to go to [Zanzibar](destination)
+    - We are travelling to [Dubai](destination)
+    - We want to visit [New York](destination)
+    - i want to go to paris
+    - i want to go to nairobi
+    - go to london
+    - visit berlin
+    - travel to tokyo
+    - [paris](destination)
+    - [nairobi](destination)
+    - [bali](destination)
+    - [berlin](destination)
+    - [tokyo](destination)
+    - [rome](destination)
+    - [lisbon](destination)
+    - [barcelona](destination)
+    - [copenhagen](destination)
+    - [amsterdam](destination)
+    - [kyoto](destination)
+    - [london](destination)
+    - [dubai](destination)
+    - destination is [paris](destination)
+    - the destination is [nairobi](destination)
+    - to [paris](destination)
+
+- intent: inform_dates
+  examples: |
+    - from [12 June to 18 June](travel_dates)
+    - on [2025-07-01](travel_dates)
+    - next [weekend](travel_dates)
+    - in [August](travel_dates)
+    - [15-20 September](travel_dates)
+    - I'm going on [July 10](travel_dates)
+    - [june 2026](travel_dates)
+    - [12-18 june 2026](travel_dates)
+    - [12 to 18 June 2026](travel_dates)
+    - [June 2026](travel_dates)
+    - in [june 2026](travel_dates)
+    - [next month](travel_dates)
+    - [next week](travel_dates)
+    - [12/06/2026](travel_dates)
+    - [2026-06-12](travel_dates)
+    - from [june 12](travel_dates) to [june 18](travel_dates)
+    - between [12 and 18 june 2026](travel_dates)
+    - [mid june](travel_dates)
+    - [end of june 2026](travel_dates)
+    - [1 week in june](travel_dates)
+
+- intent: inform_budget
+  examples: |
+    - my budget is [1500](budget) USD
+    - around [$2000](budget)
+    - I can spend [800](budget)
+    - budget of [3000](budget) dollars
+    - [1200](budget) euros
+    - budget is [100](budget)
+    - [100](budget)
+    - [500](budget)
+    - [1500](budget)
+    - [2000](budget)
+    - [$100](budget)
+    - [$1500](budget)
+    - budget [500](budget)
+    - about [300](budget)
+    - [200](budget) dollars
+    - I have [1000](budget) to spend
+    - up to [800](budget)
+    - hotels on a budget of [100](budget) dollars
+    - budget of [100 dollars](budget)
+    - my budget is [100 dollars](budget)
+
+- intent: inform_sustainability
+  examples: |
+    - sustainability is [high](sustainability_level)
+    - I care about the environment a lot
+    - [medium](sustainability_level) priority
+    - [low](sustainability_level) priority
+    - eco-first please
+    - [high](sustainability_level)
+    - [medium](sustainability_level)
+    - [low](sustainability_level)
+    - I want [high](sustainability_level) sustainability
+    - [high](sustainability_level) please
+    - [medium](sustainability_level) please
+    - [low](sustainability_level) please
+    - eco first
+    - balanced
+    - price first
+    - sustainability [high](sustainability_level)
+    - environmental priority [high](sustainability_level)
+    - [high](sustainability_level) eco
+
+- intent: inform_transport_mode
+  examples: |
+    - by [flight](transport_mode)
+    - by [train](transport_mode)
+    - by [car](transport_mode)
+    - by [bus](transport_mode)
+    - I'll [fly](transport_mode:flight)
+    - take the [train](transport_mode)
+    - [flight](transport_mode)
+    - [train](transport_mode)
+    - [car](transport_mode)
+    - [bus](transport_mode)
+
+- intent: ask_carbon_footprint
+  examples: |
+    - what's the carbon footprint?
+    - how much CO2 does this trip produce?
+    - calculate emissions
+    - show me the carbon impact
+    - how green is this option?
+    - Calculate my carbon footprint
+    - carbon footprint
+    - emissions
+    - co2
+
+- intent: ask_eco_hotels
+  examples: |
+    - show me eco hotels
+    - find sustainable accommodation
+    - green hotels nearby
+    - eco-certified places to stay
+    - where can I stay that's eco-friendly?
+    - Find eco-friendly hotels
+    - eco hotels
+    - hotels
+
+- intent: ask_green_transport
+  examples: |
+    - green transport options
+    - low-emission travel
+    - public transport options
+    - how can I travel sustainably?
+    - Show me green transportation options
+    - green transport
+
+- intent: request_human_advisor
+  examples: |
+    - I want to talk to a human
+    - connect me to an agent
+    - human advisor please
+    - escalate to a person
+    - I need human help
+    - talk to a travel specialist
+    - human
+
+- intent: out_of_scope
+  examples: |
+    - what's the weather?
+    - tell me a joke
+    - who is the president?
+    - order me a pizza
+    - play music

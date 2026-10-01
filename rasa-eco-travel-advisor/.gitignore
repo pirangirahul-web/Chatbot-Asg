@@ -1,0 +1,8 @@
+venv/
+.env
+__pycache__/
+*.pyc
+models/
+rasa.db
+.DS_Store
+.pytest_cache/

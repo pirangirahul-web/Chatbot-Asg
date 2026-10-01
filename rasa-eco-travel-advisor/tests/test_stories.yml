@@ -1,0 +1,22 @@
+stories:
+- story: test greet
+  steps:
+    - user: |
+        hello
+      intent: greet
+    - action: utter_greet
+
+- story: test human handover
+  steps:
+    - user: |
+        I want to talk to a human
+      intent: request_human_advisor
+    - action: action_handover_to_human
+    - action: utter_handover
+
+- story: test out of scope
+  steps:
+    - user: |
+        tell me a joke
+      intent: out_of_scope
+    - action: utter_out_of_scope

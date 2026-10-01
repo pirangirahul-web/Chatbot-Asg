@@ -1,0 +1,8 @@
+rasa==3.6.21
+packaging<22
+requests
+python-dotenv
+pandas
+pytest
+spacy
+en-core-web-md @ https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.4.1/en_core_web_md-3.4.1-py3-none-any.whl

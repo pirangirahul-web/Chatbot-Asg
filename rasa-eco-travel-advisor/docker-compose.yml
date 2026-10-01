@@ -1,0 +1,43 @@
+services:
+  action_server:
+    build: .
+    image: eco-travel-advisor:latest
+    container_name: rasa-actions
+    entrypoint: []
+    command: ["rasa", "run", "actions", "--cors", "*"]
+    ports:
+      - "5055:5055"
+    env_file: .env
+    restart: on-failure
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+
+  rasa:
+    image: eco-travel-advisor:latest
+    container_name: rasa-server
+    entrypoint: []
+    working_dir: /app
+    command: ["sleep", "infinity"]
+    ports:
+      - "5005:5005"
+    env_file: .env
+    environment:
+      - RASA_CACHE_DIR=/tmp/rasa-cache
+    volumes:
+      - .:/app
+      - /app/.rasa
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+
+  frontend:
+    image: nginx:alpine
+    container_name: eco-travel-frontend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+    depends_on:
+      - rasa
+    restart: unless-stopped

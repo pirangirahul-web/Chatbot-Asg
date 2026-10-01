@@ -1,0 +1,16 @@
+version: "3.1"
+
+stories:
+- story: user asks eco hotels
+  steps:
+    - intent: ask_eco_hotels
+    - action: action_fetch_hotels_flights
+    - action: action_rank_options
+
+- story: user asks green transport
+  steps:
+    - intent: ask_green_transport
+    - action: utter_ask_transport_mode
+    - intent: inform_transport_mode
+    - action: action_calculate_carbon
+    - action: utter_carbon_result
