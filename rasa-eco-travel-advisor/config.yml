@@ -1,40 +1,9 @@
 recipe: default.v1
+assistant_id: forgiving-chick
 language: en
-
 pipeline:
-  - name: WhitespaceTokenizer
-  - name: RegexFeaturizer
-  - name: LexicalSyntacticFeaturizer
-  - name: CountVectorsFeaturizer
-  - name: CountVectorsFeaturizer
-    analyzer: char_wb
-    min_ngram: 1
-    max_ngram: 4
-  - name: DIETClassifier
-    epochs: 100
-    constrain_similarities: true
-  - name: EntitySynonymMapper
-  - name: RegexEntityExtractor
-    use_lookup_tables: true
-    use_regexes: true
-    use_word_boundaries: true
-  - name: ResponseSelector
-    epochs: 100
-    constrain_similarities: true
-  - name: FallbackClassifier
-    threshold: 0.30
-    ambiguity_threshold: 0.10
-
+- name: CompactLLMCommandGenerator
+  llm:
+    model_group: openai-gpt-5-1
 policies:
-  - name: MemoizationPolicy
-    max_history: 5
-  - name: RulePolicy
-    core_fallback_threshold: 0.3
-    core_fallback_action_name: "action_default_fallback"
-    enable_fallback_prediction: true
-  - name: TEDPolicy
-    max_history: 5
-    epochs: 100
-    constrain_similarities: true
-
-assistant_id: 20250101-000000-eco-travel
+- name: FlowPolicy
